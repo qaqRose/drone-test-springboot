@@ -8,7 +8,7 @@ platform:
   os: linux
   arch: arm64
 
-## 克隆代码时，depth=1只获取最后一次提交，速度更快
+## 自定义clone流程，这里手动关闭掉
 clone:
   disable: true
   #depth: 1
@@ -17,14 +17,15 @@ steps:
   - name: my-clone
     image: drone/git
     commands:
+      ## 使用http1 (不知道为什么一直报错)
       - git config --global http.version HTTP/1.1
       - git clone https://github.com/qaqRose/drone-test-springboot.git --depth=1 .
 
   - name: build # 流水线名称
-    image: maven:3.8.5-openjdk-11
+    image: maven:3.8.5-openjdk-17
     volumes:
       - name: maven-repository
-        path: /root/.m2 # 将maven下载依赖的目录挂载出来，防止重复下载
+        path: /root/.m2   # 将maven下载依赖的目录挂载出来，复用jar和修改配置
     commands:
       - mvn clean package -DskipTests=true
       - cp target/springboot-drone-test-0.0.1-SNAPSHOT.jar /app/app.jar
