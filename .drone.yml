@@ -28,8 +28,7 @@ steps:
         path: /root/.m2   # 将maven下载依赖的目录挂载出来，复用jar和修改配置
     commands:
       - mvn clean package -DskipTests=true
-      - cp target/springboot-drone-test-0.0.1-SNAPSHOT.jar /app/app.jar
-      - cp Dockerfile /app
+      - cp target/springboot-drone-test-0.0.1-SNAPSHOT.jar app.jar
 
   - name: build-docker
     image: plugins/docker
