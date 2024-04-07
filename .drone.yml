@@ -10,13 +10,14 @@ platform:
 
 ## 克隆代码时，depth=1只获取最后一次提交，速度更快
 clone:
-  depth: 1
+  disable: true
+  #depth: 1
 
 steps:
-  - name: clone
+  - name: my-clone
     image: drone/git
     commands:
-     - git clone http://github.com/qaqRose/drone-test-springboot.git
+     - git clone http://github.com/qaqRose/drone-test-springboot.git --depth=1
 
   - name: build # 流水线名称
     image: maven:3.8.5-openjdk-11
