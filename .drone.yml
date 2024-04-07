@@ -19,7 +19,7 @@ steps:
     commands:
       ## 使用http1 (不知道为什么一直报错)
       - git config --global http.version HTTP/1.1
-      - git clone https://github.com/qaqRose/drone-test-springboot.git --depth=1 .
+      - git clone https://github.com/qaqRose/drone-test-springboot.git --depth=1
 
   - name: build # 流水线名称
     image: maven:3.8.5-openjdk-17
