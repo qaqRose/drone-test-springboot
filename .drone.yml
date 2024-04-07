@@ -13,6 +13,11 @@ clone:
   depth: 1
 
 steps:
+  - name: clone
+    image: drone/git
+    commands:
+     - git clone http://github.com/qaqRose/drone-test-springboot.git
+
   - name: build # 流水线名称
     image: maven:3.8.5-openjdk-11
     commands:
