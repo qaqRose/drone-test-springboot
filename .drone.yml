@@ -40,8 +40,10 @@ steps:
       # 第一次执行注释 stop 跟 remove
       - echo stop container
       - docker stop `docker ps -a | grep drone-test-springboot | awk '{print $1}'`
-      - echo remove image
+      - echo remove container
       - docker rm -f `docker ps -a | grep drone-test-springboot | awk '{print $1}'`
+      - echo docker remove image
+      - docker rmi `docker images | grep drone-test-springboot | awk '{print $3}'`
       - echo build new images
       - docker build -t drone-test-springboot .
       - echo run container
