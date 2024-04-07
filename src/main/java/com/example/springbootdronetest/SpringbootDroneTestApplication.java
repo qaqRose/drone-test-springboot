@@ -15,7 +15,7 @@ public class SpringbootDroneTestApplication {
 
     @GetMapping
     public String hello() {
-        return "hello drone";
+        return "hello drone springboot";
     }
 
 }
